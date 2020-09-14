@@ -11,7 +11,7 @@
         },
         "customData": {
             "type": "string",
-            "defaultValue": "[concat('#include\\n',uri('https://raw.githubusercontent.com/snoble/ScalaCompiler/master/resources/cloud-init.yaml'))]",
+            "defaultValue": "[concat('#include\\n',uri('https://raw.githubusercontent.com/snoble/ScalaCompiler/master/resources/','cloud-init.yaml'))]",
             "metadata": {
                 "description": "String passed down to the Virtual Machine."
             }   
