@@ -9,13 +9,6 @@
                 "description": "The name of you Virtual Machine."
             }
         },
-        "customData": {
-            "type": "string",
-            "defaultValue": "[concat('#include\\n',uri('https://raw.githubusercontent.com/snoble/ScalaCompiler/master/resources/','cloud-init.yaml'))]",
-            "metadata": {
-                "description": "String passed down to the Virtual Machine."
-            }   
-        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -112,7 +105,8 @@
                     }
                 ]
             }
-        }
+        },
+        "customData": "[concat('#include\\n',uri('https://raw.githubusercontent.com/snoble/ScalaCompiler/master/resources/','cloud-init.txt'))]",
     },
     "resources": [
         {
@@ -247,7 +241,7 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
-                    "customData": "[base64(parameters('customData'))]"
+                    "customData": "[base64(variables('customData'))]"
                 }
             }
         }
@@ -267,7 +261,7 @@
         },
         "customData": {
             "type": "string",
-            "value": "[parameters('customData')]"
+            "value": "[variables('customData')]"
         }
     }
 }
