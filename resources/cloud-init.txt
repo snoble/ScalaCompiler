@@ -11,3 +11,4 @@ packages:
 runcmd:
   - snap install nvim --classic
   - curl -fsSL https://code-server.dev/install.sh | sudo -u steven sh
+  - ls -tral /var/lib/waagent/ > /home/steven/dumped
