@@ -8,7 +8,18 @@ apt:
 packages:
   - openjdk-11-jre
   - sbt
+write_files:
+  - owner: steven:steven
+  - path: /home/steven/.ssh/config
+  - content: |
+    host github.com
+      HostName github.com
+      IdentityFile ~/.ssh/github_rsa
+      User git
 runcmd:
+  - secretsname=$(find /var/lib/waagent/ -name "*.prv" | cut -c -57)
   - snap install nvim --classic
   - curl -fsSL https://code-server.dev/install.sh | sudo -u steven sh
-  - ls -tral /var/lib/waagent/ > /home/steven/dumped
+  - openssl rsa -in $secretsname.prv -out /home/steven/.ssh/github_rsa
+  - chown steven:steven /home/steven/.ssh/github_rsa
+  - sudo -u steven git clone git@github.com:johnynek/bosatsu.git /home/steven/bosatsu
