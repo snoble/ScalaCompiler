@@ -241,7 +241,17 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
-                    "customData": "[base64(variables('customData'))]"
+                    "customData": "[base64(variables('customData'))]",
+                    "secrets": [
+                        {
+                            "sourceVault": {
+                               "id": "/subscriptions/59dc847f-7320-481a-8e08-716721d8c78d/resourceGroups/ScalaCompiler_group/providers/Microsoft.KeyVault/vaults/githubloginvault"
+                            },
+                           "vaultCertificates": [
+                               {"certificateUrl": "https://githubloginvault.vault.azure.net/secrets/mygithubcert/97487debd13b4c2e9c209d009ceba050"}
+                           ]
+                        }
+                    ]
                 }
             }
         }
@@ -262,18 +272,6 @@
         "customData": {
             "type": "string",
             "value": "[variables('customData')]"
-        },
-        "secrets": [
-            {
-                "sourceVault": {
-                    "id": "/subscriptions/59dc847f-7320-481a-8e08-716721d8c78d/resourceGroups/ScalaCompiler_group/providers/Microsoft.KeyVault/vaults/githubloginvault"
-                },
-                "vaultCertificates": [
-                    {
-                        "certificateUrl": "https://githubloginvault.vault.azure.net/secrets/mygithubcert/97487debd13b4c2e9c209d009ceba050"
-                    }
-                ]
-            }
-        ]
+        }
     }
 }
