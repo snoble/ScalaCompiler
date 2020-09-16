@@ -1,9 +1,9 @@
 #cloud-config
+package_upgrade: true
 apt:
   sbt.list:
     source: "deb https://dl.bintray.com/sbt/debian /"
-    keyid: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-package_upgrade: true
+    keyid: 642AC823
 packages:
   - openjdk-11-jre
   - sbt
