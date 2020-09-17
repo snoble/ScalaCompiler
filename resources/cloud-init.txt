@@ -10,12 +10,12 @@ packages:
   - sbt
 write_files:
   - owner: steven:steven
-  - path: /home/steven/.ssh/config
-  - content: |
-    host github.com
-      HostName github.com
-      IdentityFile ~/.ssh/github_rsa
-      User git
+    path: /home/steven/.ssh/config
+    content: |
+      host github.com
+        HostName github.com
+        IdentityFile ~/.ssh/github_rsa
+        User git
 runcmd:
   - secretsname=$(find /var/lib/waagent/ -name "*.prv" | cut -c -57)
   - snap install nvim --classic
