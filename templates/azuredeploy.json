@@ -59,6 +59,12 @@
                 "description": "Location for all resources."
             }
         },
+        "identity": {
+            "type": "userAssigned",
+            "userAssignedIdentities": {
+                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('vmidentity'))]": {}
+            }
+        },
         "VmSize": {
             "type": "string",
             "defaultValue": "Standard_B4ms",
