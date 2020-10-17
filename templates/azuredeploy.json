@@ -101,6 +101,7 @@
         "osDiskType": "Standard_LRS",
         "subnetAddressPrefix": "10.1.0.0/24",
         "addressPrefix": "10.1.0.0/16",
+        "identityName": "vmidentity",
         "linuxConfiguration": {
             "disablePasswordAuthentication": true,
             "ssh": {
@@ -115,6 +116,12 @@
         "customData": "[concat('#include\n',uri('https://raw.githubusercontent.com/snoble/ScalaCompiler/master/resources/','cloud-init.txt'))]"
     },
     "resources": [
+        {
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "name": "[variables('identityName')]",
+            "apiVersion": "2018-11-30",
+            "location": "[parameters('location')]"
+        },
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2018-10-01",
@@ -217,6 +224,13 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
             ],
+            "identity": {
+                "type": "userAssigned",
+                "userAssignedIdentities": {
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('identityName'))]": { /*ttk bug*/
+                    }
+                }
+            },
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('VmSize')]"
