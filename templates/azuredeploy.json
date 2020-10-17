@@ -62,7 +62,7 @@
         "identity": {
             "type": "userAssigned",
             "userAssignedIdentities": {
-                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('vmidentity'))]": {}
+                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityname'))]": {}
             }
         },
         "VmSize": {
@@ -101,6 +101,7 @@
         "osDiskType": "Standard_LRS",
         "subnetAddressPrefix": "10.1.0.0/24",
         "addressPrefix": "10.1.0.0/16",
+        "identityname": "vmidentity",
         "linuxConfiguration": {
             "disablePasswordAuthentication": true,
             "ssh": {
