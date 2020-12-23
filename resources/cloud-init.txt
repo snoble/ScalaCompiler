@@ -5,10 +5,14 @@ apt:
     sbt.list:
       source: "deb https://dl.bintray.com/sbt/debian /"
       keyid: 642AC823
+    yarn.list:
+      source: "deb https://dl.yarnpkg.com/debian/ stable main"
+      keyid: 86E50310
 packages:
   - openjdk-11-jre
   - sbt
   - libatomic1
+  - yarn
 write_files:
   - path: /home/steven/.ssh/config
     content: |
