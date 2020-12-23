@@ -13,6 +13,8 @@ packages:
   - sbt
   - libatomic1
   - yarn
+  - fontconfig
+  - unzip
 write_files:
   - path: /home/steven/.ssh/config
     content: |
@@ -32,3 +34,7 @@ runcmd:
   - sudo -u steven git config --global core.editor "nvim" -
   - sudo -u steven git clone git@github.com:johnynek/bosatsu.git /home/steven/bosatsu
   - sudo -u steven git clone git@github.com:snoble/reactive_notebooks_frontend.git /home/steven/reactive_notebooks_frontend
+  - sudo -u steven mkdir -p /home/steven/.local/share/fonts
+  - sudo -u steven wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip /home/steven/
+  - sudo -u steven unzip /home/steven/VictorMonoAll.zip -d /home/steven/.local/share/fonts/
+  - sudo -u steven fc-cache -f -v
