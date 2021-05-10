@@ -15,6 +15,8 @@ packages:
   - yarn
   - fontconfig
   - unzip
+  - postgresql
+  - postgresql-client-common
 write_files:
   - path: /home/steven/.ssh/config
     content: |
@@ -38,3 +40,6 @@ runcmd:
   - sudo -u steven wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip -P /home/steven/
   - sudo -u steven unzip /home/steven/VictorMonoAll.zip -d /home/steven/.local/share/fonts/
   - sudo -u steven fc-cache -f -v
+  - apt remove nodejs
+  - snap install node --classic
+  
